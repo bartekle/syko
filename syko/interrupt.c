@@ -12,9 +12,8 @@ void checkInterrupt(CounterType counter){
 			if((getMEMD(TIFR) & 0x40) !=0){
 						printf("----------------------Prepare to start user OVERFLOW routine\r\n");
 						clearBit(SREG,7);
-						movePConStack();
-						//setMEMD(getMEMD(SPL),(getMEMD(SREG) & 0x7F)); // rejestr statusu CPU,
-						//setMEMD(SPL,getMEMD(SPL)-1);
+						movePConStack();    // przenieś PC na stos
+						//moveSREGonStack();  // przenieś SREG na stos
 						setPC(OVERFLOW_SR);
 						return;
 			}
@@ -22,8 +21,8 @@ void checkInterrupt(CounterType counter){
 			if((getMEMD(TIFR) & 0x80) !=0){
 						printf("----------------------Prepare to start user COMPARE MATCH routine\r\n");
 						clearBit(SREG,7);
-						movePConStack();
-						//setMEMD(0x0060,getMEMD(SREG)); // rejestr statusu CPU
+						movePConStack();    // przenieś PC na stos
+						//moveSREGonStack();  // przenieś SREG na stos
 						setPC(CMPMATCH_SR);
 						return;
 
