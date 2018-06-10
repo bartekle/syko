@@ -13,7 +13,8 @@
 #endif
 
 #define MAX_LINE_GPIO_FILE	128
-
+#define MAX_SIMULATION_STEPS 1000
+#define MAX_GPIO 1
 //macierz: 
 //os x: numer GPIO, 
 //os y: krok symulacji (w danym wywolaniu symulacji system przejdzuie wylacznie po tych krokach)
@@ -132,7 +133,16 @@ void loadGPIOchanges(char *file, CounterType from_step, CounterType to_step){
 unsigned char getGPIO(int num, CounterType counter){
     return getGPIOonestep(num, counter-gpio_story_from_step);
 }
-void saveGPIOchanges(char *file){
-    //...
+void saveOC2changes(char *file,CounterType step,int state){
+	FILE *f = fopen(file, "a");
+	if (f == NULL)
+	{
+   		printf("Error opening file!\n");
+    		exit(1);
+	}
+
+	fprintf(f,"%d,%d\n",step,state);
+	fclose(f);
+
 }
-//---2018.05.16
+

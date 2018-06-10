@@ -5,9 +5,9 @@
 #include "mem_abs.h"
 #include "interpreter.h"
 #include "interrupt.h"
-#include "gpio.h"
 #include "instr.h"
 #include "counter.h"
+#include "gpio.h"
 
 #define FILE_COUNTER            "file_counter.bin"
 #define FILE_PC                 "file_pc.bin"
@@ -57,14 +57,18 @@ int main(int argc, char *argv[]) {
     //dumpGPIOchangesIN();
 
     for(;;){
-        printf("{%05d}",getCounter());   //numer cyklu
+        printf("{%05d}",getCounter()-simulation_start);   //numer cyklu
 	Ctemp=getCounter();
 	count();
+	if ((getMEMD(TCNT2)== 255) && (getOC2state()==0)){
+		saveOC2changes(FILE_GPIO_OUT,getCounter()+1-simulation_start,1);}
+	if ((getMEMD(TCNT2) == getMEMD(OCR2)) && (getOC2state()!=0)){
+		saveOC2changes(FILE_GPIO_OUT,getCounter()+1-simulation_start,0);}     
 	checkInterrupt(Ctemp);           //sprawd� czy trzeba wygenerowac przerwanie
         T=getOpcode();                   //T=opcode operacji (w��cznie z arg. wbudowanym)
-        doInstr(T);                     //wykonaj instrukcje
+        doInstr(T);
         printf("Wartosc rejestru TCNT2: %d\n",getMEMD(TCNT2));
-	printf("Stack_pointer = %d\n",getSP());
+	printf("OC2= %d\n",getOC2state());
 	
        
         if(getCounter()>=simulation_end){  //czy wykonano zadan� liczb� cykli
