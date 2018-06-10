@@ -183,14 +183,29 @@ void getBit(AddressType p, int b){
     return 0;
 }
 void movePConStack(void){
-
-	MEMD[stack_pointer--]= (getPC() & 0xFF00) >> 8;
-	MEMD[stack_pointer--]= getPC() & 0x00FF;
+	AddressType sptemp = getMEMD(SPL);
+	MEMD[sptemp--]= (getPC() & 0xFF00) >> 8;
+	MEMD[sptemp--]= getPC() & 0x00FF;
+	setMEMD(SPL,sptemp & 0x00FF);
 }
 void getPCfromStack(void){
-	PC = (MEMD[++stack_pointer]) | (MEMD[++stack_pointer] << 8);
+	AddressType sptemp = getMEMD(SPL);
+	PC = (MEMD[++sptemp]) | (MEMD[++sptemp] << 8);
+	setMEMD(SPL,sptemp & 0x00FF);
+	//PC = (MEMD[++stack_pointer]) | (MEMD[++stack_pointer] << 8);
 
 }
 AddressType getSP(void){
-return stack_pointer;
+return getMEMD(SPL);
+}
+void moveSREGonStack(void){
+	AddressType sptemp = getMEMD(SPL);
+	MEMD[sptemp--]= (getPC() & 0x7F);
+	setMEMD(SPL,sptemp & 0x00FF);
+}
+void getSREGfromStack(void){
+
+	AddressType sptemp = getMEMD(SPL);
+	MEMD[SREG]= MEMD[++sptemp];
+	setMEMD(SPL,sptemp & 0x00FF);
 }
