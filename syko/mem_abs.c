@@ -209,3 +209,8 @@ void getSREGfromStack(void){
 	MEMD[SREG]= MEMD[++sptemp];
 	setMEMD(SPL,sptemp & 0x00FF);
 }
+int getOC2state(void){
+	if ((getMEMD(PORTB) & 0x80)!=0)
+		return 1;
+	return 0;
+}
