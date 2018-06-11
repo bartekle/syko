@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include "types.h"
 #include "mem_abs.h"
+#include "gpio.h"
 
 
 
@@ -24,28 +25,4 @@ void count(void){
 setMEMD(TCNT2,getMEMD(TCNT2)+1); // Zwiekszenie licznika
 compareRegisters();
 }
-void updateOCR2(DataType R){
-setMEMD(OCR2,R);
-}
-/*unsigned int setPrescaler(void){
-unsigned int temp= getMEMD(TCCR2) & 0x07;
-	switch(temp){
-		case 2:
-			return 8;
-			break;
-		case 3:
-			return 64;
-			break;
-		case 4:
-			return 256;
-			break;
-		case 5:
-			return 1024;
-			break;
-		default:
-			return 1;
-		
-	}
-}
-*/
 

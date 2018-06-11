@@ -18,7 +18,8 @@
 #define ID_JMP_K    0x06
 #define ID_JMP_MEMC 0x07
 #define ID_RETI     0x08
-
+#define ID_LDI	    0x09
+#define ID_MOV      0x0A
 
 void doInstr(CodeType T){
     switch((T & 0xF000)>>12){   //wy�uskanie w�a�ciwego kodu operacji
@@ -45,6 +46,12 @@ void doInstr(CodeType T){
 	    break;
 	case	ID_RETI:
 		F_RETI();
+	    break;
+	case 	ID_LDI:
+		F_LDI();
+	    break;
+	case	ID_MOV:
+		F_MOV();
 	    break;
         default:
             printf("Unknown opcode at PC=0x%08lx! (T=0x%04lx)\r\n", getPC(), T);
