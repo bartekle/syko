@@ -11,5 +11,7 @@ void F_JMP_MEMC(void);
 void F_JMP_K(void);
 void F_CLI(void);
 void F_SEI(void);
+void F_LDI(void);
+void F_MOV(void);
 
 #endif //__INSTR_H__

@@ -48,26 +48,10 @@ int main(int argc, char *argv[]){
 	memset(MEMC, '\0', MAX_ADDRESS+1);
 	MEMC[0]=HTON(0x1000);
 	MEMC[1]=HTON(0x1000);
-	MEMC[2]=HTON(0x1000);
-	MEMC[3]=HTON(0x1000);
-	MEMC[4]=HTON(0x1000);
-	MEMC[5]=HTON(0x1000);
-	MEMC[6]=HTON(0x1000);
-	MEMC[7]=HTON(0x6001);
-	MEMC[18]=HTON(0x7000);
-	MEMC[19]=HTON(0x0020);
-	MEMC[20]=HTON(0x7000);
-	MEMC[21]=HTON(0x0023);
-	MEMC[32]=HTON(0x20C7);
-	MEMC[33]=HTON(0x31B6);
-	MEMC[34]=HTON(0x8000);
-	MEMC[35]=HTON(0x30C6);
-	MEMC[36]=HTON(0x31B7);
-	MEMC[37]=HTON(0x8000);
-
-	MEMD[0x0000]=0x01;
-	MEMD[0x005f]=0x80; // SREG bit I
-	MEMD[0x0057]=0xc0; // TIMSK overflow&match intterupt enable
+	
+	MEMD[0x0000]=0x00;
+	MEMD[0x005f]=0x00; // SREG bit I
+	MEMD[0x0057]=0x00; // TIMSK overflow&match intterupt enable
 
 	saveMEMC(FILE_CODE, 40);
 	saveMEMD(FILE_DATA, 0xff);
