@@ -35,8 +35,6 @@ void setBit(AddressType p, int b);
 void clearBit(AddressType p, int b);
 void movePConStack(void);
 void getPCfromStack(void);
-void moveSREGonStack(void);
-void getSREGfromStack(void);
 AddressType getSP(void);
 int getOC2state(void);
 #endif //__MEM_ABS_H__

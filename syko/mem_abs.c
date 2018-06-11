@@ -198,17 +198,7 @@ void getPCfromStack(void){
 AddressType getSP(void){
 return getMEMD(SPL);
 }
-void moveSREGonStack(void){
-	AddressType sptemp = getMEMD(SPL);
-	MEMD[sptemp--]= (getPC() & 0x7F);
-	setMEMD(SPL,sptemp & 0x00FF);
-}
-void getSREGfromStack(void){
 
-	AddressType sptemp = getMEMD(SPL);
-	MEMD[SREG]= MEMD[++sptemp];
-	setMEMD(SPL,sptemp & 0x00FF);
-}
 int getOC2state(void){
 	if ((getMEMD(PORTB) & 0x80)!=0)
 		return 1;

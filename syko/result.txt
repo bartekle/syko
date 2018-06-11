@@ -1,0 +1,20 @@
+Read MEMC (file_code.bin) file in 80bytes
+Read MEMD (file_data.bin) file in 65535bytes
+Read PC file (file_pc.bin) in 2bytes [PC=0x0006]
+Read counter file (file_counter.bin) in 4bytes [counter=07546]
+{00000}----------------------Prepare to start user COMPARE MATCH routine
+0x0014[0x7000]: JMP MEMC[0x0015]=0x0023
+Wartosc rejestru TCNT2: 50
+OC2= 1
+{00001}0x0023[0x30C7]: CBI R24, 7
+Wartosc rejestru TCNT2: 51
+OC2= 0
+{00002}0x0024[0x8000]: RETI
+Wartosc rejestru TCNT2: 52
+OC2= 0
+{00003}0x0006[0x1000]: No operation...
+Wartosc rejestru TCNT2: 53
+OC2= 0
+Saved MEMD file (file_data.bin) in 65535bytes
+Write PC (file_pc.bin) file in 2bytes [PC=0x0007]
+Write counter (file_counter.bin) file in 4bytes [counter=07550]

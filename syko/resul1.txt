@@ -1,0 +1,23 @@
+Read MEMC (file_code.bin) file in 80bytes
+Read MEMD (file_data.bin) file in 65535bytes
+Read PC file (file_pc.bin) in 2bytes [PC=0x0005]
+Read counter file (file_counter.bin) in 4bytes [counter=07803]
+{00000}0x0005[0x1000]: No operation...
+Wartosc rejestru TCNT2: 254
+OC2= 0
+{00001}----------------------Prepare to start user OVERFLOW routine
+0x0012[0x7000]: JMP MEMC[0x0013]=0x0020
+Wartosc rejestru TCNT2: 255
+OC2= 0
+{00002}0x0020[0x20C7]: SBI R24, 7
+Wartosc rejestru TCNT2: 0
+OC2= 1
+{00003}0x0021[0x8000]: RETI
+Wartosc rejestru TCNT2: 1
+OC2= 1
+{00004}0x0006[0x1000]: No operation...
+Wartosc rejestru TCNT2: 2
+OC2= 1
+Saved MEMD file (file_data.bin) in 65535bytes
+Write PC (file_pc.bin) file in 2bytes [PC=0x0007]
+Write counter (file_counter.bin) file in 4bytes [counter=07808]

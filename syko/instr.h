@@ -1,7 +1,7 @@
 #ifndef __INSTR_H__
 #define __INSTR_H__
 
-void F_CALL(void);
+
 void F_RETI(void);
 void F_OUT(void);
 void F_SBI(void);

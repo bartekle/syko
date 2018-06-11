@@ -42,6 +42,6 @@ typedef unsigned int                CounterType;
 #define SPH						0x005e
 #define OVERFLOW_SR                                     0x0012
 #define CMPMATCH_SR					0x0014
-#define TCCR2                                           0x0045
+
 
 #endif //__TYPES_H__
